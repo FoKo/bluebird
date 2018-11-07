@@ -1,7 +1,10 @@
 {
-  "name": "bluebird",
+  "name": "@foko/bluebird",
   "description": "Full featured Promises/A+ implementation with exceptionally good performance",
   "version": "3.5.3",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "promise",
     "performance",
