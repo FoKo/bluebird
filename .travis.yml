@@ -2,15 +2,23 @@ language: node_js
 sudo: false
 matrix:
   include:
-    - node_js: "6"
+  - node_js: '6'
   fast_finish: true
 git:
   depth: 5
 env:
-  - "NODE_FLAGS='--expose-gc' SCRIPT_FLAGS=''"
+- NODE_FLAGS='--expose-gc' SCRIPT_FLAGS=''
 before_script:
 - git submodule update --init --recursive
-script: "node $NODE_FLAGS tools/test.js $SCRIPT_FLAGS"
+script: node $NODE_FLAGS tools/test.js $SCRIPT_FLAGS
 branches:
   only:
-    - master
+  - master
+deploy:
+  provider: npm
+  email: aws@foko.co
+  api_key:
+    secure: NgyL+4X9g9diWFYJx+Y/zWMye0h1k/v3zel7loMp0OJLEomZzJt4IG1cVVDF+rdJqgvimKVH8e65R96siKQ3oasLN9eo6m7lnOSRDNxOVPrZqnAJK+CJOd5yEjFHAW3aiswz7iTzzu+zOgDbhWxn9gNiAzmFiGPde9VKKHrXhp8p4EXt5mmLy3CJteJazVQkYeHN9TvPnxpo4RIxdR39JjKbxueDTyuZHIl8lnsU8MnptfaSZ9YxHiHn/NfmodnD3AdwhoR5hZnWEs3w++NUFsfjU01So0IHtFvhzANfp+NXtVg7nSizAY9WBfGFNJvWhBFyHYNPRXl0uplqTkpJyqQXVKZzEGNVtp2OOC9MnhzwpiLfT6qb4neVlMw3+2xzWd3aYzybFB2WmhPxQLIG7Mu8KLDdGXZeHdVjHaqxhmOEQn0NrU28irrQJnkNkjGHP8ZpH88dA3w3wQiVqPAQyEJ9MeWlGV+tDKuwG0DMETp4fJRrWfHNZkR5FjoW1JzFb3mc98UfQSFFoFXLkr+9xDiaxukMi9FTTEZmj34262OkqKeM7k4a6Nk56LnEfBmUaQ29vEWyDczYrG20BmsQnkgs08qkLOEj6rwvJ0Dd+yDVD40i4beXjBXw7Xta4baiRrtwnMUUKkMtCcI00Aj0S2ejpafdT+GO48z9RUacYcw=
+  on:
+    tags: true
+    repo: FoKo/bluebird
