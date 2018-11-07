@@ -331,8 +331,13 @@ Promise.prototype._setWillBeCancelled = function() {
 };
 
 Promise.prototype._setAsyncGuaranteed = function() {
-    if (async.hasCustomScheduler()) return;
-    this._bitField = this._bitField | IS_ASYNC_GUARANTEED;
+    // This feature is broken (petkaantonov/bluebird#1326)
+    // - disabling it for now
+
+    // if (async.hasCustomScheduler()) return;
+    // this._bitField = this._bitField | IS_ASYNC_GUARANTEED;
+
+    return;
 };
 
 Promise.prototype._receiverAt = function (index) {
